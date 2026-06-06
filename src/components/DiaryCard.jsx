@@ -2,8 +2,8 @@ import { useNavigate } from "react-router-dom";
 
 
 export default function DiaryCard({
-  mood,
   title,
+  mood,
   preview,
   date,
 }) {
@@ -21,12 +21,12 @@ export default function DiaryCard({
       "
     >
       <div className="text-4xl mb-4">
-        {mood}
+        {title}
       </div>
 
-      <h3 className="text-2xl font-semibold">
-        {title}
-      </h3>
+      <p className="text-2xl ">
+        {mood}
+      </p>
 
       <p className="text-gray-400 mt-3 line-clamp-3">
         {preview}
