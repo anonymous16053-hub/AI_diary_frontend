@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import logo from "../assets/logo.png";
 import API from "../services/api";
 
 export default function Register() {
@@ -46,12 +47,14 @@ export default function Register() {
 
   return (
     <div className="min-h-screen bg-[#0D1117] flex items-center justify-center">
+      <div className="absolute top-20 left-0 w-96 h-96 bg-purple-600 opacity-20 blur-[120px] pointer-events-none" />
 
+      <div className="absolute bottom-20 right-0 w-96 h-96 bg-pink-600 opacity-20 blur-[120px] pointer-events-none" />
       <div className="bg-[#161B22] p-8 rounded-3xl w-[400px] shadow-lg">
 
-        <h1 className="text-white text-3xl font-bold mb-6">
-          Create Account
-        </h1>
+  <div className="text-center">
+  <img src={logo} alt="Logo" className="mx-auto p-3" />
+</div>
 
         <input
           type="text"
@@ -82,6 +85,7 @@ export default function Register() {
             text-white
             border border-gray-700
             outline-none
+            
           "
           value={email}
           onChange={(e) => setEmail(e.target.value)}

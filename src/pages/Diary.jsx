@@ -1,59 +1,150 @@
-import { ArrowLeft, Save } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { Save,Trash2 } from "lucide-react";
+import { useState,useEffect } from "react";
 import API from "../services/api";
+import {useNavigate,useParams} from "react-router-dom";
 
 export default function Diary() {
-const navigate = useNavigate();
 
-const [title, setTitle] = useState("");
-const [entry, setEntry] = useState("");
-const [mood, setMood] = useState("");
+  const [title, setTitle] = useState("");
+  const [entry, setEntry] = useState("");
+  const [mood, setMood] = useState("");
+  const [date, setDate] = useState("");
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const isEditMode = Boolean(id);
+  
+  useEffect(() => {
+    if (!id) return;
 
+    async function loadEntry() {
+
+      try {
+        const response = await API.get(`/entry/${id}`);
+
+        setTitle(response.data.title);
+        setEntry(response.data.text);
+        setDate(response.data.date);
+        setMood(response.data.mood);
+      } catch (error) {
+        console.log(error);
+        alert("Failed to load entry");
+      }
+    } loadEntry();
+  }, [id]);
+
+// async function saveEntry() {
+  
+
+// const userId =
+//   localStorage.getItem("user_id");
+
+// if (!entry.trim()) {
+//   alert("Please write something");
+//   return;
+// }
+
+// try {
+
+//   const response =
+//     await API.post("/save", {
+//       title: title || "Untitled",
+//       user_id: userId,
+//       entry: entry
+//     });
+
+//   if (response.data.mood) {
+//     setMood(response.data.mood);
+//   }
+
+//   alert(
+//     response.data.message ||
+//     "Entry saved"
+//   );
+
+// } catch (error) {
+
+//   console.log(error);
+
+//   alert("Failed to save entry");
+// }
+
+
+// }
 async function saveEntry() {
+  try {
 
+    if (isEditMode) {
 
-const userId =
-  localStorage.getItem("user_id");
+      await API.put(
+        `/entry/${id}`,
+        {
+          title,
+          text: entry,
+        }
+      );
 
-if (!entry.trim()) {
-  alert("Please write something");
-  return;
-}
+      alert("Updated");
 
-try {
+    } else {
 
-  const response =
-    await API.post("/save", {
-      title: title || "Untitled",
-      user_id: userId,
-      entry: entry
-    });
+      const response =
+        await API.post("/save", {
+          title:
+            title ||
+            "Untitled",
 
-  if (response.data.mood) {
-    setMood(response.data.mood);
+          user_id:
+            localStorage.getItem(
+              "user_id"
+            ),
+
+          entry,
+        });
+
+      setDate(
+        response.data.date
+      );
+      setMood(
+        response.data.mood
+      );
+
+      alert(
+        response.data.message
+      );
+    }
+
+  } catch (error) {
+    console.log(error);
   }
+  }
+  
+async function deleteEntry() {
 
-  alert(
-    response.data.message ||
-    "Entry saved"
-  );
+  if (
+    !window.confirm(
+      "Delete this entry?"
+    )
+  )
+    return;
 
-} catch (error) {
+  try {
 
-  console.log(error);
+    await API.delete(
+      `/entry/${id}`
+    );
 
-  alert("Failed to save entry");
-}
+    navigate("/dashboard");
 
-
-}
-
+  } catch (error) {
+    console.log(error);
+  }
+  }
+  
 return ( <div className="max-w-5xl mx-auto p-8 text-white">
 
 
-  <button
-    onClick={() => navigate("/")}
+  {/* <button
+    onClick={() => navigate("/dashboard")}
     className="
       flex
       items-center
@@ -65,8 +156,9 @@ return ( <div className="max-w-5xl mx-auto p-8 text-white">
   >
     <ArrowLeft size={18} />
     Back
-  </button>
-
+  </button> */}
+  <div className="mt-6 flex items-start ">
+  
   <input
     value={title}
     onChange={(e) =>
@@ -74,7 +166,7 @@ return ( <div className="max-w-5xl mx-auto p-8 text-white">
     }
     placeholder="Entry Title"
     className="
-      w-full
+      w-5/6
       bg-transparent
       text-4xl
       font-bold
@@ -82,6 +174,12 @@ return ( <div className="max-w-5xl mx-auto p-8 text-white">
       mb-6
     "
   />
+ {date && (
+      <p className="text-white-400 mt-2">
+       Date:- {date}
+      </p>
+  )}
+ </div>
 
   <textarea
     value={entry}
@@ -99,6 +197,7 @@ return ( <div className="max-w-5xl mx-auto p-8 text-white">
       outline-none
     "
   />
+
 
   {mood && (
 
@@ -121,7 +220,7 @@ return ( <div className="max-w-5xl mx-auto p-8 text-white">
 
   )}
 
-  <div className="mt-6">
+  <div className="mt-6 flex items-start ">
 
     <button
       onClick={saveEntry}
@@ -136,8 +235,28 @@ return ( <div className="max-w-5xl mx-auto p-8 text-white">
       "
     >
       <Save size={18} />
-      Save Entry
+      Save Note
     </button>
+    {isEditMode && (
+
+      <button
+       onClick={deleteEntry}
+        className="
+      flex
+      items-center
+      gap-2
+        ml-4
+        bg-red-600
+        px-6
+        py-3
+        rounded-xl
+      "
+      >
+        <Trash2 size={18} />
+        Delete Note
+      </button>
+    )}
+    
 
   </div>
 

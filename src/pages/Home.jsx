@@ -5,6 +5,7 @@ import {
   BookOpen,
   BarChart3,
 } from "lucide-react";
+import logo from "../assets/logo.png";
 
 export default function Home() {
 
@@ -15,17 +16,18 @@ export default function Home() {
 
       {/* Background Glow */}
 
-      <div className="absolute top-20 left-20 w-96 h-96 bg-purple-600 opacity-20 blur-[120px]" />
+      <div className="absolute top-20 left-0 w-96 h-96 bg-purple-600 opacity-20 blur-[120px]" />
 
-      <div className="absolute bottom-20 right-20 w-96 h-96 bg-pink-600 opacity-20 blur-[120px]" />
+      <div className="absolute bottom-20 right-0 w-96 h-96 bg-pink-600 opacity-20 blur-[120px]" />
 
       {/* Navbar */}
 
-      <nav className="relative z-10 flex justify-between items-center px-10 py-6">
+      <nav className="relative z-10 flex justify-between items-center lg:px-5 md:px-10 px-2">
+        <div>
+          
+         <img src={logo} alt="Logo" className="m-0 h-20 md:h-32 lg:h-20 w-90 md:w-32 lg:w-90 p-1 " />
 
-        <h1 className="text-3xl font-bold">
-          ✨ AI Diary
-        </h1>
+</div>
 
         <div className="flex gap-4">
 

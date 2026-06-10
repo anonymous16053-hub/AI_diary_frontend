@@ -59,7 +59,6 @@ import Mood from "./pages/Mood";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Settings from "./pages/Settings";
-import Editor from "./pages/Editor";
 import Analytics from "./pages/Analytics";
 
 import MainLayout from "./layouts/MainLayout";
@@ -81,9 +80,9 @@ function App() {
 
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/diary" element={<Diary />} />
+            <Route path="/diary/:id" element={<Diary />} />
             <Route path="/chat" element={<AIChat />} />
             <Route path="/mood" element={<Mood />} />
-            <Route path="/editor" element={<Editor />} />
             <Route path="/analytics" element={<Analytics />} />
             <Route path="/settings" element={<Settings />} />
 

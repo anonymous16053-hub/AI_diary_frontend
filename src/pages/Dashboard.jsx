@@ -63,13 +63,25 @@ Loading entries... </div>
   );
 });
   
-return ( <div className="min-h-screen bg-[#0D1117] text-white p-6"> <h1 className="text-4xl font-bold">
+  return (<div className="min-h-screen page-bg text-white p-4 md:p-8">
+    {/* <h1 className="text-4xl font-bold">
 Good Evening 👋 </h1>
 
 
   <p className="text-gray-400 mt-2">
     {notes.length} Memories
+    </p>
+     */}
+    <div className="mb-8">
+  <h1 className="text-3xl md:text-5xl font-bold">
+    Welcome Back 👋
+  </h1>
+
+  <p className="opacity-70 mt-2">
+    Capture memories, track emotions and chat with your AI companion.
   </p>
+</div>
+
 
   <div className="mt-6 flex items-center bg-[#161B22] rounded-xl px-4 py-3">
     <Search size={18} />
@@ -111,16 +123,17 @@ Good Evening 👋 </h1>
     {filteredNotes.map((entry, index) => (
       <DiaryCard
         key={index}
-        preview={entry.text}
+        id={entry.id}
         title={entry.title}
         mood={entry.mood}
+        preview={entry.text}
         date={entry.date}
       />
     ))}
   </div>
 
   <button
-    onClick={() => navigate("/editor")}
+    onClick={() => navigate("/diary")}
     className="
       fixed
       bottom-8

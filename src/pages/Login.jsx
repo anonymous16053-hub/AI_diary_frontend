@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useNavigate,Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import logo from "../assets/logo.png";
 import API from "../services/api";
 
 export default function Login() {
@@ -45,30 +46,60 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0D1117] flex items-center justify-center">
+ <div className="min-h-screen bg-[#0D1117] flex items-center justify-center">
+      <div className="absolute top-20 left-0 w-96 h-96 bg-purple-600 opacity-20 blur-[120px] pointer-events-none" />
 
-      <div className="bg-[#161B22] p-8 rounded-3xl w-96">
+      <div className="absolute bottom-20 right-0 w-96 h-96 bg-pink-600 opacity-20 blur-[120px] pointer-events-none" />
+      <div className="bg-[#161B22] p-8 rounded-3xl w-[400px] shadow-lg">
 
-        <h1 className="text-3xl font-bold text-white mb-6">
-          Login
-        </h1>
+  <div className="text-center">
+  <img src={logo} alt="Logo" className="mx-auto p-3" />
+</div>
 
         <input
-          className="w-full p-3 rounded-xl bg-black mb-4"
+          className="
+            w-full
+            p-3
+            mb-4
+            rounded-xl
+            bg-[#0D1117]
+            text-white
+            border border-gray-700
+            outline-none
+            
+          "
           placeholder="Username"
           onChange={(e)=>setUsername(e.target.value)}
         />
 
         <input
           type="password"
-          className="w-full p-3 rounded-xl bg-black mb-4"
+          placeholder="Password"
+          className="
+            w-full
+            p-3
+            mb-6
+            rounded-xl
+            bg-[#0D1117]
+            text-white
+            border border-gray-700
+            outline-none
+          "
           placeholder="Password"
           onChange={(e)=>setPassword(e.target.value)}
         />
 
         <button
           onClick={handleLogin}
-          className="w-full bg-purple-600 p-3 rounded-xl text-white"
+            className="
+            w-full
+            bg-purple-600
+            hover:bg-purple-700
+            text-white
+            p-3
+            rounded-xl
+            transition
+          "
         >
           Login
         </button>
