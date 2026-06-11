@@ -136,7 +136,7 @@ import {
 
 import { useNavigate, NavLink } from "react-router-dom";
 import { useState } from "react";
-import { useTheme } from "../context/useTheme";
+import { UseTheme } from "../context/UseTheme";
 import logo from "../assets/logo.png";
 
 export default function Sidebar() {
@@ -145,7 +145,7 @@ export default function Sidebar() {
   const [open, setOpen] = useState(false);
 
   const { theme, toggleTheme } =
-    useTheme();
+    UseTheme();
 
   const handleLogout = () => {
     localStorage.clear();
