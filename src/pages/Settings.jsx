@@ -291,7 +291,7 @@ export default function Settings() {
           Preferences
         </h2>
 
-      <div className="mt-4">
+      {/* <div className="mt-4">
 
   <label className="block mb-2">
     Theme
@@ -322,7 +322,7 @@ export default function Settings() {
 
   </select>
 
-</div>
+</div> */}
 
 <div className="mt-4">
 

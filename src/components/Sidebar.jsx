@@ -123,7 +123,7 @@
 import {
   BookOpen,
   Bot,
-  Smile,
+  // Smile,
   Settings,
   Activity,
   LogOut,
@@ -168,11 +168,11 @@ export default function Sidebar() {
       path: "/chat",
       icon: Bot,
     },
-    {
-      name: "Mood",
-      path: "/mood",
-      icon: Smile,
-    },
+    // {
+    //   name: "Mood",
+    //   path: "/mood",
+    //   icon: Smile,
+    // },
     {
       name: "Analytics",
       path: "/analytics",

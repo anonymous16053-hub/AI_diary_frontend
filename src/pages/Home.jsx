@@ -22,19 +22,20 @@ export default function Home() {
 
       {/* Navbar */}
 
-      <nav className="relative z-10 flex justify-between items-center lg:px-5 md:px-10 px-2">
+      <nav className="relative z-10 flex justify-between items-center lg:items-start lg:px-5 md:px-10 px-2">
         <div>
           
-         <img src={logo} alt="Logo" className="m-0 h-20 md:h-32 lg:h-20 w-90 md:w-32 lg:w-90 p-1 " />
+         <img src={logo} alt="Logo" className="m-0 h-20 md:h-25 lg:h-25 lg:m-5 w-60 md:w-100 lg:w-90 p-1 " />
 
 </div>
 
-        <div className="flex gap-4">
+        <div className="flex items-center lg:items-start gap-2 m-0 h-20 md:h-32 lg:mt-0 lg:h-20 w-40 md:w-55 lg:w-90 ">
 
           <button
             onClick={() => navigate("/login")}
             className="
-              px-5 py-2
+              
+              mt-5 h-10 md:h-15 lg:h-13 w-20 md:w-32 lg:w-70
               rounded-xl
               border border-gray-700
               hover:border-purple-500
@@ -47,7 +48,8 @@ export default function Home() {
             onClick={() => navigate("/register")}
             className="
               bg-purple-600
-              px-5 py-2
+              
+              mt-5 h-10 md:h-15 lg:h-13 w-20 md:w-32 lg:w-70
               rounded-xl
               hover:bg-purple-700
             "
@@ -106,7 +108,7 @@ export default function Home() {
             hover:bg-purple-700
           "
         >
-          Get Started Free 🚀
+          Get Started
         </button>
 
       </section>

@@ -127,10 +127,13 @@ async function clearChat() {
   }
 
 }
-return ( <div className="h-screen flex flex-col text-white p-6">
-
-  <h1 className="text-3xl font-bold mb-6">
-    AI Companion 🤖
+// h-[calc(100vh-80px)]
+  return (
+    <div className="lg:h-screen h-[calc(100vh-80px)] flex flex-col text-white p-4 md:p-6 pt-12 md:pt-6">
+      <div className="flex justify-between">
+        
+  <h1 className="text-3xl font-bold mb-1">
+    AI Companion 
   </h1>
   <button
     onClick={clearChat}
@@ -141,10 +144,11 @@ return ( <div className="h-screen flex flex-col text-white p-6">
       mb-5
       rounded-xl
       hover:bg-red-700
-    "
+      "
   >
     Clear Chat
   </button>
+      </div>
 
 
   <div className="flex-1 overflow-y-auto space-y-4">
@@ -175,7 +179,7 @@ return ( <div className="h-screen flex flex-col text-white p-6">
  <div ref={messagesEndRef}></div>
   </div>
 
-  <div className="flex gap-3 mt-4">
+  <div className="flex gap-3 pt-3 ">
 
     <input
       value={message}

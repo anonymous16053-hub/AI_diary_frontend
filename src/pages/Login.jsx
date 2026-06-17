@@ -2,49 +2,42 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import API from "../services/api";
-
+import toast from "react-hot-toast";
 export default function Login() {
 
   const navigate = useNavigate();
-
-  const [username,setUsername] = useState("");
+  // let isLoading = false;
+  const [identifier, setIdentifier] = useState("");
   const [password,setPassword] = useState("");
-  console.log(localStorage.getItem("user_id"));
-  
-
-  async function handleLogin() {
-      console.log(localStorage.getItem("user_id"));
-
-    try {
-      console.log(localStorage.getItem("user_id"));
-      
-      const response = await API.post("/login", {
-        username,
+   async function handleLogin() {
+  try {
+    const response = await API.post(
+      "/login",
+      {
+        identifier,
         password,
-      });
-
-      if (response.data.user_id) {
-
-        localStorage.setItem(
-          "user_id",
-          response.data.user_id
-        );
-
-
-
-        navigate("/dashboard");
       }
+    );
 
-      alert(response.data.message);
+    localStorage.setItem(
+      "user_id",
+      response.data.user_id
+    );
 
-    } catch (error) {
+    toast.success(
+      "Welcome back!"
+    );
 
-      console.log(error);
+    navigate("/dashboard");
 
-      alert("Login failed");
-    }
+  } catch (error) {
+    toast.error(
+      error.response?.data?.message ||
+      "Login failed"
+    );
   }
-
+}
+// User1@test
   return (
  <div className="min-h-screen bg-[#0D1117] flex items-center justify-center">
       <div className="absolute top-20 left-0 w-96 h-96 bg-purple-600 opacity-20 blur-[120px] pointer-events-none" />
@@ -68,8 +61,8 @@ export default function Login() {
             outline-none
             
           "
-          placeholder="Username"
-          onChange={(e)=>setUsername(e.target.value)}
+          placeholder="Username or Email"
+          onChange={(e)=>setIdentifier(e.target.value)}
         />
 
         <input
@@ -90,6 +83,8 @@ export default function Login() {
         />
 
         <button
+
+          
           onClick={handleLogin}
             className="
             w-full

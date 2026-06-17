@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import API from "../services/api";
+import toast from "react-hot-toast";
 
 export default function Register() {
 
@@ -9,7 +10,10 @@ export default function Register() {
 
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+  const [password, setPassword] = useState("");
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const passwordRegex =  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+
 
   const [loading, setLoading] = useState(false);
 
@@ -17,6 +21,16 @@ export default function Register() {
 
     if (!username || !email || !password ) {
       alert("Please fill all fields");
+      if (!emailRegex.test(email)) {
+        toast.error("Enter a valid email");
+        return;
+      }
+      if (!passwordRegex.test(password)) {
+        toast.error(
+          "Password must contain 8+ chars, uppercase, number & symbol"
+        );
+        return;
+        }
       return;
     }
 
