@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import logo from "../assets/logo.png";
+import loader from "../assets/loader.svg";
 import API from "../services/api";
 import toast from "react-hot-toast";
 export default function Login() {
@@ -103,7 +104,7 @@ export default function Login() {
             transition
           "
         >
-          {isLoading ? (<img src="assets/loader.svg" alt="Loading..." className="w-6 h-6"/>) : ("Login")}
+          {isLoading ? (<img src={loader} alt="Loading..." className="w-6 h-6"/>) : ("Login")}
           
         </button>
 
