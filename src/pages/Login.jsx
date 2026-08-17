@@ -103,7 +103,7 @@ export default function Login() {
             transition
           "
         >
-          {isLoading ? (<img src="assets.loader.svg" alt="Loading..." className="w-6 h-6"/>) : ("Login")}
+          {isLoading ? (<img src="assets/loader.svg" alt="Loading..." className="w-6 h-6"/>) : ("Login")}
           
         </button>
 
