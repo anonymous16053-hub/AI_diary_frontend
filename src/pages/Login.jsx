@@ -9,7 +9,10 @@ export default function Login() {
   // let isLoading = false;
   const [identifier, setIdentifier] = useState("");
   const [password,setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
    async function handleLogin() {
+    if(isLoading) return;
+    setIsLoading(true);
   try {
     const response = await API.post(
       "/login",
@@ -35,6 +38,9 @@ export default function Login() {
       error.response?.data?.message ||
       "Login failed"
     );
+  }
+  finally{
+    setIsLoading(false);
   }
 }
 // User1@test
@@ -86,6 +92,7 @@ export default function Login() {
 
           
           onClick={handleLogin}
+          diabled={isLoading}
             className="
             w-full
             bg-purple-600
@@ -96,7 +103,8 @@ export default function Login() {
             transition
           "
         >
-          Login
+          {isLoading ? (<img src="assets.svg.loader.svg" alt="Loading..." className="w-6 h-6"/>) : ("Login")}
+          
         </button>
 
         <p className="text-gray-400 mt-4 text-center">
